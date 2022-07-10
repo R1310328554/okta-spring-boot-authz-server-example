@@ -145,7 +145,7 @@ public class OAuth2AccessTokenResponseHttpMessageConverter extends AbstractHttpM
 			String accessToken = tokenResponseParameters.get(OAuth2ParameterNames.ACCESS_TOKEN);
 			System.out.println("tokenResponseParameters = [" + tokenResponseParameters + "]");
 
-			OAuth2AccessToken.TokenType accessTokenType = OAuth2AccessToken.TokenType.BEARER;
+			OAuth2AccessToken.TokenType accessTokenType = OAuth2AccessToken.TokenType.BEARER;// 唯一改动点， 为了兼容 weibo
 			if (OAuth2AccessToken.TokenType.BEARER.getValue().equalsIgnoreCase(
 					tokenResponseParameters.get(OAuth2ParameterNames.TOKEN_TYPE))) {
 				accessTokenType = OAuth2AccessToken.TokenType.BEARER;

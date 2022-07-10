@@ -108,12 +108,12 @@ public class DefaultOAuth2UserService implements OAuth2UserService<OAuth2UserReq
 			throw new OAuth2AuthenticationException(oauth2Error, oauth2Error.toString());
 		}
 
-		if (uri.contains("weibo")) {
+		// ClientRegistration clientRegistration = userRequest.getClientRegistration();
+		if ("https://api.weibo.com/2/users/show.json".equalsIgnoreCase(uri)) {
 			OAuth2AccessToken accessToken = userRequest.getAccessToken();
 			Map<String, Object> additionalParameters = userRequest.getAdditionalParameters();
 			String uid = String.valueOf(additionalParameters.get("uid"));
-			uri = uri + "?uid=" + uid + "&access_token=" + accessToken.getTokenValue();
-			ClientRegistration clientRegistration = userRequest.getClientRegistration();
+			uri = "https://api.weibo.com/2/users/show.json?uid=" + uid + "&access_token=" + accessToken.getTokenValue();
 			Class<ClientRegistration.ProviderDetails.UserInfoEndpoint> userInfoEndpointClass = ClientRegistration.ProviderDetails.UserInfoEndpoint.class;
 			try {
 				Field uriFie = userInfoEndpointClass.getDeclaredField("uri");
